@@ -1,0 +1,24 @@
+# Gradle / Android 构建产物
+.gradle/
+build/
+.kotlin/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# 本机路径（SDK 位置），每台电脑不同
+local.properties
+
+# Android Studio
+.idea/
+*.iml
+
+# 安装包与签名密钥（密钥绝不能提交）
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# 系统文件
+.DS_Store
+Thumbs.db

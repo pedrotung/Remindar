@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">个人提醒</string>
+    <string name="channel_name">提醒通知</string>
+    <string name="channel_desc">到点时弹出的提醒</string>
+
+    <string name="new_reminder">新建提醒</string>
+    <string name="edit_reminder">编辑提醒</string>
+    <string name="empty_hint">还没有提醒，点击右下角 + 添加</string>
+
+    <!-- 主页 -->
+    <string name="menu">菜单</string>
+    <string name="menu_notification_settings">通知设置</string>
+    <string name="filter_all">全部</string>
+    <string name="filter_today">今天</string>
+    <string name="filter_todo">待办</string>
+    <string name="filter_repeat">重复</string>
+    <string name="filter_done">已完成</string>
+    <string name="section_all">近期提醒</string>
+    <string name="section_today">今天</string>
+    <string name="section_todo">待办事项</string>
+    <string name="section_repeat">重复提醒</string>
+    <string name="section_done">已完成 / 已结束</string>
+    <string name="empty_today">今天没有要处理的事项</string>
+    <string name="empty_todo">没有待办，点击右下角 + 用语音或文字添加</string>
+    <string name="empty_repeat">还没有重复提醒</string>
+    <string name="empty_done">还没有已完成的事项</string>
+    <string name="unit_items">项</string>
+    <string name="stat_today_label">今日待处理</string>
+    <string name="stat_todo_label">待办事项</string>
+    <string name="stat_next">下一个 %1$s %2$s</string>
+    <string name="stat_no_next">暂无待提醒</string>
+    <string name="stat_todo_overdue">%1$d 项已逾期</string>
+    <string name="stat_todo_today">%1$d 项今天到期</string>
+    <string name="stat_todo_none">没有待办</string>
+    <string name="stat_todo_ok">都还没到期</string>
+
+    <!-- 待办 -->
+    <string name="type_event">提醒</string>
+    <string name="type_todo">待办</string>
+    <string name="todo_complete">完成</string>
+    <string name="todo_reopen">标记为未完成</string>
+    <string name="todo_next">本次已完成，下次：%1$s</string>
+
+    <!-- 逾期待办每日提醒（静音） -->
+    <string name="channel_overdue_name">逾期待办</string>
+    <string name="channel_overdue_desc">每天在设定的时间提醒尚未完成的逾期待办，不响铃、不振动</string>
+
+    <!-- 设置 -->
+    <string name="settings_title">设置</string>
+    <string name="settings_overdue_section">逾期待办</string>
+    <string name="settings_overdue_switch">每天提醒逾期待办</string>
+    <string name="settings_overdue_desc">对今天之前到期、仍未完成的待办，每天在下面的时间静默提醒一次（不响铃、不振动，只在通知栏和锁屏显示）</string>
+    <string name="settings_overdue_time">提醒时间</string>
+    <string name="settings_overdue_saved">将在每天 %1$s 提醒逾期待办</string>
+    <string name="settings_overdue_off">已关闭逾期待办提醒</string>
+    <string name="overdue_title">待办逾期：%1$s</string>
+    <string name="overdue_text">已逾期 %1$d 天 · 原定 %2$s</string>
+    <string name="overdue_public_title">有待办已逾期</string>
+    <string name="overdue_public_text">解锁后查看详情</string>
+    <string name="fp_on">已开启</string>
+    <string name="fp_off">未开启</string>
+    <string name="fp_tap_to_enable">点击开启</string>
+    <string name="fp_no_wifi_short">未连接 Wi‑Fi</string>
+
+    <!-- 编辑页 -->
+    <string name="share_target_label">添加为提醒</string>
+    <string name="repeat_none">不重复</string>
+    <string name="repeat_daily">每天</string>
+    <string name="repeat_weekly">每周</string>
+    <string name="repeat_monthly">每月</string>
+    <string name="lead_0">准时</string>
+    <string name="lead_30m">提前30分钟</string>
+    <string name="lead_1h">提前1小时</string>
+    <string name="lead_1d">提前1天</string>
+
+    <!-- 智能识别 -->
+    <string name="ai_card_title">智能识别</string>
+    <string name="ai_input_hint">粘贴短信、邮件，或用输入法语音说出要做的事，如“明天下午三点前给王总报价”</string>
+    <string name="ai_paste">粘贴</string>
+    <string name="ai_recognize">识别</string>
+    <string name="ai_auto_pasted">已自动粘贴剪贴板内容</string>
+    <string name="ai_pasted">已粘贴</string>
+    <string name="ai_from_share">已收到分享的文字</string>
+    <string name="ai_clipboard_empty">剪贴板里没有文字</string>
+    <string name="ai_input_empty">请先粘贴或输入文字</string>
+    <string name="ai_not_auto">内容看起来不像带时间的通知，确认无误可点“识别”</string>
+    <string name="ai_idle_hint">输入或粘贴后点“识别”，结果会填入下方，确认后保存</string>
+    <string name="ai_not_configured">还没有配置大模型，点此设置 ›</string>
+    <string name="ai_recognizing">正在识别…</string>
+    <string name="ai_done">识别完成，请核对下方内容后保存</string>
+    <string name="ai_event_passed">识别到的时间已经过去，请核对日期</string>
+    <string name="ai_done_no_time">识别完成。没有提到时间，已默认 1 小时后提醒，可在下方修改</string>
+    <string name="ai_no_time">未指定时间</string>
+    <string name="ai_event_time">事件时间：%1$s　何时提醒？</string>
+    <string name="ai_note_time">时间：%1$s</string>
+
+    <!-- 大模型设置 -->
+    <string name="ai_settings_title">智能识别设置</string>
+    <string name="ai_provider">大模型服务商</string>
+    <string name="ai_preset_deepseek">DeepSeek</string>
+    <string name="ai_preset_zhipu">智谱 GLM</string>
+    <string name="ai_preset_qwen">通义千问</string>
+    <string name="ai_preset_custom">自定义</string>
+    <string name="ai_base_url">接口地址（OpenAI 兼容）</string>
+    <string name="ai_model">模型名称</string>
+    <string name="ai_api_key">API Key</string>
+    <string name="ai_test">保存并测试</string>
+    <string name="ai_saved">已保存</string>
+    <string name="ai_testing">正在测试…</string>
+    <string name="ai_test_ok">测试成功：识别出“%1$s”，%2$s</string>
+    <string name="ai_url_invalid">接口地址必须以 https:// 开头</string>
+    <string name="ai_model_required">请填写模型名称</string>
+    <string name="ai_key_required">请填写 API Key</string>
+    <string name="ai_test_sample">【某某口腔诊所】您好，您已成功预约下周三上午10:30的洗牙及复查，地点：人民路88号3楼。请携带身份证并提前10分钟到达。如需改约请致电 010-12345678。</string>
+    <string name="ai_help">说明\n\n• 获取 API Key：在所选服务商的开放平台注册账号，于“API Keys”页面创建。DeepSeek 为 platform.deepseek.com。\n\n• 费用：识别一条短信约消耗几百个 token，费用很低。DeepSeek 按量计费，新账户可能有赠送额度；部分平台提供免费模型。具体以各平台公告为准。\n\n• 隐私：点击“识别”时，文本会发送到所选服务商的服务器。请勿用于含密码、验证码、银行卡号等的内容。API Key 使用系统密钥库加密保存在本机。\n\n• 也可以在短信、邮件中选中文字后点“分享”→“添加为提醒”。</string>
+
+    <string name="hint_title">标题（必填）</string>
+    <string name="hint_note">备注</string>
+    <string name="label_time">提醒时间</string>
+    <string name="label_repeat">重复</string>
+    <string name="save">保存</string>
+    <string name="delete">删除</string>
+    <string name="delete_confirm">确定删除“%1$s”吗？</string>
+    <string name="title_required">请输入标题</string>
+    <string name="time_passed">提醒时间已过，请重新选择</string>
+    <string name="saved">已设置，将于 %1$s 提醒</string>
+
+    <string name="snooze">10 分钟后</string>
+    <string name="done">知道了</string>
+
+    <string name="notification_denied">未授予通知权限，提醒将无法弹出</string>
+    <string name="exact_alarm_title">需要“闹钟和提醒”权限</string>
+    <string name="exact_alarm_msg">为了准时提醒，请在设置中允许本应用设置闹钟和提醒。</string>
+    <string name="go_settings">去设置</string>
+
+    <!-- 查找手机 -->
+    <string name="fp_title">查找手机</string>
+    <string name="fp_enable">开启查找手机服务</string>
+    <string name="fp_label_address">在电脑浏览器中打开</string>
+    <string name="fp_label_pin">PIN 码</string>
+    <string name="fp_reset_pin">更换</string>
+    <string name="fp_reset_pin_confirm">更换后，电脑上需要输入新的 PIN 码。确定更换吗？</string>
+    <string name="fp_test_ring">测试响铃</string>
+    <string name="fp_stop_ring">停止响铃</string>
+    <string name="fp_enable_first">请先开启查找手机服务</string>
+    <string name="fp_disabled_hint">服务未开启</string>
+    <string name="fp_no_network">未连接 Wi‑Fi 或热点，电脑暂时无法访问</string>
+    <string name="fp_port_error">端口 %1$d 被占用，服务无法启动</string>
+    <string name="fp_label_reliability">让查找更可靠</string>
+    <string name="fp_dnd">勿扰模式下也响铃</string>
+    <string name="fp_battery">不受电池优化限制</string>
+    <string name="fp_keep_awake">保持唤醒（熄屏很久后也能立即响应，更耗电）</string>
+    <string name="fp_grant">去开启</string>
+    <string name="fp_granted">已开启</string>
+    <string name="fp_not_granted">未开启</string>
+    <string name="fp_help">使用方法：\n1. 手机和电脑连接同一个 Wi‑Fi（不需要能上网）；没有 Wi‑Fi 时，也可以让电脑连接手机热点。\n2. 在电脑上打开工程里的 laptop/查找手机.html，输入上面的 PIN 码，点“让手机响铃”。网页会自动扫描局域网找到手机并记住地址，所以找不到手机时不需要知道它的地址。\n3. 建议在路由器后台给本机分配固定 IP（DHCP 静态分配），地址永远不变，查找最快。\n\n小米、华为、OPPO、vivo 等手机还需在系统设置中允许本应用“自启动”和“后台运行”。</string>
+
+    <string name="fp_channel_service">查找手机服务</string>
+    <string name="fp_channel_ringing">查找手机响铃</string>
+    <string name="fp_notif_title">查找手机已开启</string>
+    <string name="fp_notif_url">电脑浏览器打开 %1$s</string>
+    <string name="fp_ringing_title">手机在这里！</string>
+    <string name="fp_ringing_text">点击“找到了”停止响铃</string>
+    <string name="fp_found">找到了</string>
+</resources>

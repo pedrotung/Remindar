@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 浅色：浅灰背景 + 白色卡片 + 细边框 + 蓝色强调色 -->
+    <color name="bg">#F5F6F8</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="outline">#E7E9ED</color>
+    <color name="text_primary">#15171A</color>
+    <color name="text_secondary">#8B9099</color>
+    <color name="accent">#2F6BFF</color>
+    <color name="accent_container">#EAF0FF</color>
+    <color name="chip_bg">#EEF0F3</color>
+    <color name="chip_selected">#15171A</color>
+    <color name="chip_text">#15171A</color>
+    <color name="chip_text_selected">#FFFFFF</color>
+    <color name="success">#22A06B</color>
+    <color name="error">#D93025</color>
+</resources>

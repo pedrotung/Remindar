@@ -1,0 +1,11 @@
+# 统一换行符：仓库中一律存 LF；Windows 批处理必须是 CRLF，Unix 脚本必须是 LF
+* text=auto
+*.bat text eol=crlf
+*.cmd text eol=crlf
+gradlew text eol=lf
+
+# 二进制文件
+*.jar binary
+*.png binary
+*.jpg binary
+*.webp binary

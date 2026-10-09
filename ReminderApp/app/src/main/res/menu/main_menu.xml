@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 主页左上角菜单（PopupMenu） -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/find_phone"
+        android:title="@string/fp_title" />
+    <item
+        android:id="@+id/ai_settings"
+        android:title="@string/ai_settings_title" />
+    <item
+        android:id="@+id/settings"
+        android:title="@string/settings_title" />
+    <item
+        android:id="@+id/notification_settings"
+        android:title="@string/menu_notification_settings" />
+</menu>
