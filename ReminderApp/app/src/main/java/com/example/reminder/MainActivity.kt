@@ -18,6 +18,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.example.reminder.ai.AiSettingsActivity
 import com.example.reminder.databinding.ActivityMainBinding
 import com.example.reminder.findphone.FindPhoneActivity
@@ -98,8 +99,8 @@ class MainActivity : AppCompatActivity() {
     private fun refresh() {
         val now = System.currentTimeMillis()
         val all = db.getAll()
-        // 排序：逾期待办在最前，其次是等待中的提醒，再次是已停用的；同组内按时间
-        val active = all.filter { !it.isDone }.sortedWith(
+        // 未结束的条目。排序：逾期待办在最前，其次是等待中的提醒，再次是手动停用的；同组内按时间
+        val active = all.filter { !it.isFinished(now) }.sortedWith(
             compareBy<Reminder>({
                 when {
                     it.isOverdue(now) -> 0
@@ -113,8 +114,8 @@ class MainActivity : AppCompatActivity() {
             Filter.TODAY -> active.filter { isForToday(it, now) }
             Filter.TODO -> active.filter { it.isTodo }
             Filter.REPEAT -> active.filter { it.repeat != RepeatType.NONE }
-            // 已完成的待办 + 已结束 / 已停用的普通提醒，最近的在前
-            Filter.DONE -> all.filter { it.isDone || (!it.isTodo && !it.enabled) }
+            // 已完成的待办 + 已响过的一次性提醒，最近的在前
+            Filter.DONE -> all.filter { it.isFinished(now) }
                 .sortedByDescending { if (it.isDone) it.doneAt else it.triggerAt }
         }
         adapter.submitList(items)
@@ -218,17 +219,37 @@ class MainActivity : AppCompatActivity() {
         binding.list.post { refresh() }
     }
 
+    /**
+     * 勾选 / 取消勾选待办。
+     * 完成时先在原位置显示打勾和删除线，停留片刻再移到“已完成”，并给出“撤销”。
+     */
     private fun toggleDone(r: Reminder, done: Boolean) {
-        if (done) {
-            val updated = TodoHelper.complete(this, r)
-            // 重复待办完成后会跳到下一次，提示一下
-            if (r.repeat != RepeatType.NONE) {
-                Toast.makeText(this, getString(R.string.todo_next, updated.friendlyTime()), Toast.LENGTH_SHORT).show()
-            }
-        } else {
+        if (!done) {
             TodoHelper.reopen(this, r)
+            binding.list.post { refresh() }
+            return
         }
-        binding.list.post { refresh() }
+        val updated = TodoHelper.complete(this, r)
+        if (r.repeat != RepeatType.NONE) {
+            // 重复待办：本次完成后跳到下一周期，不移出列表
+            snackbar(getString(R.string.todo_next, updated.friendlyTime()), null)
+            binding.list.post { refresh() }
+            return
+        }
+        // 原位显示完成状态
+        adapter.submitList(adapter.currentList.map { if (it.id == r.id) updated else it })
+        binding.list.postDelayed({ refresh() }, 700)
+        snackbar(getString(R.string.todo_done_msg, r.title)) {
+            TodoHelper.reopen(this, updated)
+            refresh()
+        }
+    }
+
+    private fun snackbar(text: String, undo: (() -> Unit)?) {
+        Snackbar.make(binding.root, text, Snackbar.LENGTH_LONG).apply {
+            anchorView = binding.fab // 显示在悬浮按钮上方，不挡住它
+            if (undo != null) setAction(R.string.undo) { undo() }
+        }.show()
     }
 
     private fun confirmDelete(r: Reminder) {

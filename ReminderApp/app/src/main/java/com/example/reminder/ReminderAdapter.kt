@@ -41,13 +41,19 @@ class ReminderAdapter(
 
         headline.text = "${r.friendlyTime()}  ${r.title}"
         headline.paintFlags = headline.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+        // 已响过的一次性提醒是“已提醒”（结束了），手动关闭且未到时间的才是“已停用”
+        val state = when {
+            r.enabled -> null
+            r.isFinished() -> "已提醒"
+            else -> "已停用"
+        }
         supporting.text = joinParts(
-            if (!r.enabled) "已停用" else null,
+            state,
             if (r.repeat != RepeatType.NONE) r.repeat.label else null,
             firstLine(r.note),
         ).ifEmpty { "单次提醒" }
         supporting.setTextColor(ContextCompat.getColor(ctx, R.color.text_secondary))
-        root.alpha = if (r.enabled) 1f else 0.5f
+        setDimmed(this, !r.enabled)
 
         enabledSwitch.visibility = View.VISIBLE
         enabledSwitch.setOnCheckedChangeListener(null)
@@ -87,11 +93,23 @@ class ReminderAdapter(
             firstLine(r.note),
         )
         supporting.setTextColor(ContextCompat.getColor(ctx, if (overdue) R.color.error else R.color.text_secondary))
-        root.alpha = if (r.isDone) 0.5f else 1f
+        setDimmed(this, r.isDone)
 
         // 待办以勾选完成为主，不显示闹钟开关
         enabledSwitch.setOnCheckedChangeListener(null)
         enabledSwitch.visibility = View.GONE
+    }
+
+    /**
+     * 变灰作用在子视图上，而不是整行 root：
+     * RecyclerView 的默认动画会把整行的 alpha 重置为 1，导致个别行没有变灰。
+     */
+    private fun setDimmed(b: ItemReminderBinding, dimmed: Boolean) {
+        val a = if (dimmed) 0.5f else 1f
+        b.root.alpha = 1f
+        b.iconFrame.alpha = a
+        b.textBlock.alpha = a
+        b.enabledSwitch.alpha = a
     }
 
     private fun joinParts(vararg parts: String?) = parts.filterNotNull().filter { it.isNotEmpty() }.joinToString(" · ")

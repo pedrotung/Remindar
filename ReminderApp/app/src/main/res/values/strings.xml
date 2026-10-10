@@ -41,6 +41,8 @@
     <string name="todo_complete">完成</string>
     <string name="todo_reopen">标记为未完成</string>
     <string name="todo_next">本次已完成，下次：%1$s</string>
+    <string name="todo_done_msg">已完成「%1$s」</string>
+    <string name="undo">撤销</string>
 
     <!-- 逾期待办每日提醒（静音） -->
     <string name="channel_overdue_name">静默提醒</string>

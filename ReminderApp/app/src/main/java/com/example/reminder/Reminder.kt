@@ -52,6 +52,13 @@ data class Reminder(
     /** 未完成且提醒时间已过的待办 */
     fun isOverdue(now: Long = System.currentTimeMillis()) = isTodo && !isDone && triggerAt <= now
 
+    /**
+     * 已结束：完成的待办，或已经响过的一次性普通提醒。
+     * 这类条目只出现在“已完成”中，不再占用“全部”等列表。
+     */
+    fun isFinished(now: Long = System.currentTimeMillis()) =
+        isDone || (!isTodo && !enabled && repeat == RepeatType.NONE && triggerAt <= now)
+
     /** 对重复提醒：把已过期的触发时间推进到 now 之后 */
     fun rolledForward(now: Long = System.currentTimeMillis()): Reminder {
         if (repeat == RepeatType.NONE) return this
