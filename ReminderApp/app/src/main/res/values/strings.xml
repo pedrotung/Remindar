@@ -113,7 +113,7 @@
     <string name="ai_model_required">请填写模型名称</string>
     <string name="ai_key_required">请填写 API Key</string>
     <string name="ai_test_sample">【某某口腔诊所】您好，您已成功预约下周三上午10:30的洗牙及复查，地点：人民路88号3楼。请携带身份证并提前10分钟到达。如需改约请致电 010-12345678。</string>
-    <string name="ai_help">说明\n\n• 获取 API Key：在所选服务商的开放平台注册账号，于“API Keys”页面创建。DeepSeek 为 platform.deepseek.com。\n\n• 费用：识别一条短信约消耗几百个 token，费用很低。DeepSeek 按量计费，新账户可能有赠送额度；部分平台提供免费模型。具体以各平台公告为准。\n\n• 隐私：点击“识别”时，文本会发送到所选服务商的服务器。请勿用于含密码、验证码、银行卡号等的内容。API Key 使用系统密钥库加密保存在本机。\n\n• 也可以在短信、邮件中选中文字后点“分享”→“添加为提醒”。</string>
+    <string name="ai_help">说明\n\n• 获取 API Key（通义千问）：登录阿里云百炼控制台 bailian.console.aliyun.com，开通服务后在“API-KEY”页面创建。其它服务商同理，在其开放平台创建（DeepSeek 为 platform.deepseek.com）。\n\n• 模型：默认 qwen-plus；想更省可改为 qwen-flash 等，点“保存并测试”确认可用即可。\n\n• 费用：识别一条短信约消耗几百个 token，费用很低。新开通通常有免费额度，具体以各平台公告为准。\n\n• 隐私：点击“识别”时，文本会发送到所选服务商的服务器。请勿用于含密码、验证码、银行卡号等的内容。API Key 使用系统密钥库加密保存在本机。\n\n• 也可以在短信、邮件中选中文字后点“分享”→“添加为提醒”。</string>
 
     <string name="hint_title">标题（必填）</string>
     <string name="hint_note">备注</string>

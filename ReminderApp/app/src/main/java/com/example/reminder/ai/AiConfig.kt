@@ -8,9 +8,11 @@ object AiConfig {
     /** 预置服务商：名称 → (接口地址, 默认模型) */
     data class Preset(val baseUrl: String, val model: String)
 
+    /** 默认：通义千问（阿里云百炼，国内可直连） */
+    val QWEN = Preset("https://dashscope.aliyuncs.com/compatible-mode/v1", "qwen-plus")
     val DEEPSEEK = Preset("https://api.deepseek.com", "deepseek-chat")
     val ZHIPU = Preset("https://open.bigmodel.cn/api/paas/v4", "glm-4-flash")
-    val QWEN = Preset("https://dashscope.aliyuncs.com/compatible-mode/v1", "qwen-turbo")
+    private val DEFAULT = QWEN
 
     private const val PREFS = "ai"
     private const val KEY_BASE = "base_url"
@@ -21,9 +23,9 @@ object AiConfig {
     private fun prefs(context: Context) =
         context.applicationContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
 
-    fun baseUrl(context: Context): String = prefs(context).getString(KEY_BASE, null) ?: DEEPSEEK.baseUrl
+    fun baseUrl(context: Context): String = prefs(context).getString(KEY_BASE, null) ?: DEFAULT.baseUrl
 
-    fun model(context: Context): String = prefs(context).getString(KEY_MODEL, null) ?: DEEPSEEK.model
+    fun model(context: Context): String = prefs(context).getString(KEY_MODEL, null) ?: DEFAULT.model
 
     fun apiKey(context: Context): String? =
         prefs(context).getString(KEY_API_KEY, null)?.let { SecretStore.decrypt(it) }

@@ -54,6 +54,13 @@
                             app:singleSelection="true">
 
                             <com.google.android.material.chip.Chip
+                                android:id="@+id/chipQwen"
+                                style="@style/Widget.Reminder.PillChip"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ai_preset_qwen" />
+
+                            <com.google.android.material.chip.Chip
                                 android:id="@+id/chipDeepseek"
                                 style="@style/Widget.Reminder.PillChip"
                                 android:layout_width="wrap_content"
@@ -66,13 +73,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/ai_preset_zhipu" />
-
-                            <com.google.android.material.chip.Chip
-                                android:id="@+id/chipQwen"
-                                style="@style/Widget.Reminder.PillChip"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/ai_preset_qwen" />
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chipCustom"
