@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>图标方案</title>
+<style>
+  body { margin: 0; width: 1080px; background: #F5F6F8; font-family: "Microsoft YaHei", system-ui, sans-serif; color: #15171A; }
+  h1 { font-size: 46px; margin: 48px 48px 8px; }
+  .sub { font-size: 26px; color: #8B9099; margin: 0 48px 32px; }
+  .card { background: #fff; border: 2px solid #E7E9ED; border-radius: 36px; margin: 0 40px 32px; padding: 36px 40px; display: flex; align-items: center; gap: 40px; }
+  .card .big svg { width: 260px; height: 260px; display: block; }
+  .info h2 { font-size: 40px; margin: 0 0 10px; }
+  .info p { font-size: 26px; color: #6B7079; margin: 0 0 18px; line-height: 1.5; }
+  .sizes { display: flex; align-items: flex-end; gap: 22px; }
+  .sizes svg { display: block; }
+  .home { margin: 8px 40px 32px; border-radius: 36px; padding: 40px 30px 36px; display: flex; justify-content: space-around; }
+  .home.light { background: linear-gradient(160deg, #E9EEF8, #D9E4F5); }
+  .home.dark { background: linear-gradient(160deg, #1E2530, #0E1218); }
+  .app { width: 200px; text-align: center; font-size: 26px; }
+  .app svg { width: 150px; height: 150px; display: block; margin: 0 auto 12px; }
+  .home.light .app { color: #15171A; }
+  .home.dark .app { color: #F1F2F4; }
+  .label { font-size: 30px; font-weight: bold; margin: 8px 48px 12px; }
+  .tag { display: inline-block; font-size: 30px; font-weight: bold; color: #fff; background: #15171A; border-radius: 12px; padding: 2px 16px; margin-right: 12px; }
+</style>
+</head>
+<body>
+<h1>「个人提醒」图标方案</h1>
+<p class="sub">配色沿用 App 的蓝色主题 · 圆角方形（系统会按手机风格自动裁成圆形 / 圆角）</p>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4A86FF"/><stop offset="1" stop-color="#2457E6"/>
+    </linearGradient>
+    <!-- A 闹钟 + 对勾 -->
+    <symbol id="A" viewBox="0 0 108 108">
+      <rect width="108" height="108" rx="24" fill="url(#bg)"/>
+      <g fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M30 36 A10 10 0 0 1 42 28"/>
+        <path d="M78 36 A10 10 0 0 0 66 28"/>
+        <circle cx="54" cy="57" r="22"/>
+        <path d="M44 57 L51 64 L65 50"/>
+        <path d="M40 78 L36 83 M68 78 L72 83"/>
+      </g>
+    </symbol>
+    <!-- B 铃铛 + 星光（智能识别） -->
+    <symbol id="B" viewBox="0 0 108 108">
+      <rect width="108" height="108" rx="24" fill="url(#bg)"/>
+      <path fill="#fff" d="M54 27c-11 0-19 9-19 21v11l-6 8c-1 2 0 4 2 4h46c2 0 3-2 2-4l-6-8V48c0-12-8-21-19-21z"/>
+      <circle cx="54" cy="77" r="6" fill="#fff"/>
+      <path fill="#FFD54F" d="M76 24l2.6 7.4L86 34l-7.4 2.6L76 44l-2.6-7.4L66 34l7.4-2.6z"/>
+    </symbol>
+    <!-- C 日历页 + 对勾 -->
+    <symbol id="C" viewBox="0 0 108 108">
+      <rect width="108" height="108" rx="24" fill="url(#bg)"/>
+      <rect x="28" y="32" width="52" height="48" rx="9" fill="#fff"/>
+      <path d="M28 41a9 9 0 0 1 9-9h34a9 9 0 0 1 9 9v5H28z" fill="#FF6B5E"/>
+      <g stroke="#fff" stroke-width="5" stroke-linecap="round"><path d="M41 27v10M67 27v10"/></g>
+      <path d="M42 63 L50 71 L66 55" fill="none" stroke="#2F6BFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <!-- D 极简：时钟圆环，指针组成对勾 -->
+    <symbol id="D" viewBox="0 0 108 108">
+      <rect width="108" height="108" rx="24" fill="#fff"/>
+      <circle cx="54" cy="54" r="26" fill="none" stroke="#2F6BFF" stroke-width="7"/>
+      <path d="M42 55 L51 64 L68 44" fill="none" stroke="#2F6BFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="54" cy="33" r="3.5" fill="#2F6BFF"/>
+    </symbol>
+    <!-- 现在的图标（系统自带） -->
+    <symbol id="OLD" viewBox="0 0 108 108">
+      <rect width="108" height="108" rx="24" fill="#ECEEF1"/>
+      <path d="M38 34h32l-4 40H42z" fill="#C9CDD3"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="card"><div class="big"><svg><use href="#A"/></svg></div><div class="info"><h2><span class="tag">A</span>闹钟 + 对勾</h2><p>一眼看出是“提醒”，对勾代表待办完成。最直观、最稳妥。</p><div class="sizes"><svg width="96" height="96"><use href="#A"/></svg><svg width="64" height="64"><use href="#A"/></svg><svg width="40" height="40"><use href="#A"/></svg></div></div></div>
+
+<div class="card"><div class="big"><svg><use href="#B"/></svg></div><div class="info"><h2><span class="tag">B</span>铃铛 + 星光</h2><p>铃铛代表提醒，金色星光代表“智能识别”。更有个性，突出 AI 卖点。</p><div class="sizes"><svg width="96" height="96"><use href="#B"/></svg><svg width="64" height="64"><use href="#B"/></svg><svg width="40" height="40"><use href="#B"/></svg></div></div></div>
+
+<div class="card"><div class="big"><svg><use href="#C"/></svg></div><div class="info"><h2><span class="tag">C</span>日历 + 对勾</h2><p>日历页代表日程和预约，对勾代表待办。偏“效率工具”风格。</p><div class="sizes"><svg width="96" height="96"><use href="#C"/></svg><svg width="64" height="64"><use href="#C"/></svg><svg width="40" height="40"><use href="#C"/></svg></div></div></div>
+
+<div class="card"><div class="big"><svg><use href="#D"/></svg></div><div class="info"><h2><span class="tag">D</span>极简时钟</h2><p>白底蓝线，时钟的指针组成一个对勾。简洁高级，和 App 内的白色卡片风格一致。</p><div class="sizes"><svg width="96" height="96"><use href="#D"/></svg><svg width="64" height="64"><use href="#D"/></svg><svg width="40" height="40"><use href="#D"/></svg></div></div></div>
+
+<p class="label">放在手机桌面上的效果（浅色壁纸）</p>
+<div class="home light">
+  <div class="app"><svg><use href="#A"/></svg>A</div>
+  <div class="app"><svg><use href="#B"/></svg>B</div>
+  <div class="app"><svg><use href="#C"/></svg>C</div>
+  <div class="app"><svg><use href="#D"/></svg>D</div>
+</div>
+<p class="label">深色壁纸</p>
+<div class="home dark">
+  <div class="app"><svg><use href="#A"/></svg>A</div>
+  <div class="app"><svg><use href="#B"/></svg>B</div>
+  <div class="app"><svg><use href="#C"/></svg>C</div>
+  <div class="app"><svg><use href="#D"/></svg>D</div>
+</div>
+<p class="label">对比：现在的图标（系统自带，像一张白纸）</p>
+<div class="home light" style="justify-content:flex-start; padding-left:60px;">
+  <div class="app"><svg><use href="#OLD"/></svg>个人提醒</div>
+</div>
+<div style="height:40px"></div>
+</body>
+</html>

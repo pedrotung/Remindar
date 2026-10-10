@@ -80,7 +80,7 @@ object NotificationHelper {
 
         createChannel(context)
         val builder = NotificationCompat.Builder(context, if (quiet) CHANNEL_QUIET else CHANNEL_ID)
-            .setSmallIcon(android.R.drawable.ic_popup_reminder)
+            .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(r.title)
             .setContentText(bodyText(r))
             .setStyle(NotificationCompat.BigTextStyle().bigText(bodyText(r)))
@@ -112,7 +112,7 @@ object NotificationHelper {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
         )
         return NotificationCompat.Builder(context, CHANNEL_ALARM)
-            .setSmallIcon(android.R.drawable.ic_lock_idle_alarm)
+            .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(r.title)
             .setContentText(bodyText(r))
             .setStyle(NotificationCompat.BigTextStyle().bigText(bodyText(r)))
@@ -131,7 +131,7 @@ object NotificationHelper {
     fun buildPlaceholder(context: Context): android.app.Notification {
         createChannel(context)
         return NotificationCompat.Builder(context, CHANNEL_QUIET)
-            .setSmallIcon(android.R.drawable.ic_popup_reminder)
+            .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(context.getString(R.string.app_name))
             .setSilent(true)
             .build()
@@ -177,13 +177,13 @@ object NotificationHelper {
         )
 
         val publicVersion = NotificationCompat.Builder(context, CHANNEL_QUIET)
-            .setSmallIcon(android.R.drawable.ic_popup_reminder)
+            .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(context.getString(R.string.overdue_public_title))
             .setContentText(context.getString(R.string.overdue_public_text))
             .build()
 
         val notification = NotificationCompat.Builder(context, CHANNEL_QUIET)
-            .setSmallIcon(android.R.drawable.ic_popup_reminder)
+            .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(context.getString(R.string.overdue_title, r.title))
             .setContentText(summary)
             .setStyle(NotificationCompat.BigTextStyle().bigText(body))

@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- 导出旧版（Android 7）PNG 图标用：icon_export.html?size=192&round=1 -->
+<style>html, body { margin: 0; background: transparent; overflow: hidden; } svg { display: block; }</style>
+</head>
+<body>
+<svg id="icon" viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9A62"/><stop offset="1" stop-color="#F4511E"/></linearGradient>
+  </defs>
+  <rect id="shape" x="2" y="2" width="104" height="104" rx="24" fill="url(#g5)"/>
+  <path fill="#fff" d="M54 27c-11 0-19 9-19 21v11l-6 8c-1 2 0 4 2 4h46c2 0 3-2 2-4l-6-8V48c0-12-8-21-19-21z"/>
+  <circle cx="54" cy="77" r="6" fill="#fff"/>
+  <path fill="#FFF3B0" d="M76 24l2.6 7.4L86 34l-7.4 2.6L76 44l-2.6-7.4L66 34l7.4-2.6z"/>
+</svg>
+<script>
+  const q = new URLSearchParams(location.search);
+  const size = +(q.get('size') || 192);
+  const svg = document.getElementById('icon');
+  svg.setAttribute('width', size);
+  svg.setAttribute('height', size);
+  if (q.get('round') === '1') document.getElementById('shape').setAttribute('rx', '52');
+</script>
+</body>
+</html>
