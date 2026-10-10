@@ -19,16 +19,35 @@ object AlarmScheduler {
     fun schedule(context: Context, r: Reminder) {
         cancel(context, r.id)
         if (!r.enabled || r.triggerAt <= System.currentTimeMillis()) return
-        setAlarm(context, r.triggerAt, pendingIntent(context, r.id, ReminderReceiver.ACTION_FIRE))
+        setAlarmClock(context, r.triggerAt, pendingIntent(context, r.id, ReminderReceiver.ACTION_FIRE))
     }
 
     /** 稍后提醒：使用独立的 action，不会覆盖重复提醒的下一次闹钟 */
     fun scheduleSnooze(context: Context, id: Long, delayMillis: Long) {
-        setAlarm(
+        setAlarmClock(
             context,
             System.currentTimeMillis() + delayMillis,
             pendingIntent(context, id, ReminderReceiver.ACTION_SNOOZE_FIRE),
         )
+    }
+
+    /**
+     * 到点响铃的提醒使用“闹钟”级别的 setAlarmClock：系统最高优先级、不参与对齐批处理、Doze 下也准时。
+     * （ColorOS 实测：setExactAndAllowWhileIdle 会被加上 20 秒～1 分多钟的对齐窗口，导致提醒迟到。）
+     * 代价：有待触发的提醒时，状态栏会显示闹钟图标，锁屏 / 时钟可能显示“下一个闹钟”。
+     */
+    private fun setAlarmClock(context: Context, at: Long, pi: PendingIntent) {
+        if (!canScheduleExact(context)) {
+            setAlarm(context, at, pi) // 无精确闹钟权限时退回非精确闹钟
+            return
+        }
+        val show = PendingIntent.getActivity(
+            context, 0,
+            Intent(context, MainActivity::class.java),
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+        )
+        context.getSystemService(AlarmManager::class.java)
+            .setAlarmClock(AlarmManager.AlarmClockInfo(at, show), pi)
     }
 
     fun cancel(context: Context, id: Long) {
