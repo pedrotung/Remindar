@@ -135,6 +135,10 @@ object AiParser {
         } catch (e: JSONException) {
             ""
         }
+        // 阿里云百炼开启“用完即停”后，免费额度耗尽返回 403 + AllocationQuota.FreeTierOnly
+        if (resp.contains("FreeTierOnly")) {
+            return "该模型的免费额度已用完（已开启用完即停）。可在设置中换一个仍有免费额度的模型"
+        }
         val base = when (code) {
             401 -> "API Key 无效"
             402 -> "账户余额不足"
