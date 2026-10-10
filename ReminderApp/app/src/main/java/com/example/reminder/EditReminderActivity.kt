@@ -1,7 +1,5 @@
 package com.example.reminder
 
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.content.ClipboardManager
 import android.content.Intent
 import android.os.Build
@@ -96,8 +94,8 @@ class EditReminderActivity : AppCompatActivity() {
         cal.set(Calendar.MILLISECOND, 0)
         updateDateTimeLabels()
 
-        binding.dateButton.setOnClickListener { pickDate() }
-        binding.timeButton.setOnClickListener { pickTime() }
+        binding.whenButton.setOnClickListener { pickWhen() }
+        setupQuickTimes()
         binding.save.setOnClickListener { save() }
         binding.delete.setOnClickListener { delete() }
 
@@ -334,24 +332,52 @@ class EditReminderActivity : AppCompatActivity() {
 
     // ---------------- 表单 ----------------
 
-    private fun pickDate() {
-        DatePickerDialog(this, { _, y, m, d ->
-            cal.set(y, m, d)
-            updateDateTimeLabels()
-        }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
+    /** 滚轮选择日期 + 时分 */
+    private fun pickWhen() {
+        DateTimePickerSheet.show(this, getString(R.string.picker_title), cal.timeInMillis, withDate = true) {
+            setManualTime(it)
+        }
     }
 
-    private fun pickTime() {
-        TimePickerDialog(this, { _, h, min ->
-            cal.set(Calendar.HOUR_OF_DAY, h)
-            cal.set(Calendar.MINUTE, min)
-            updateDateTimeLabels()
-        }, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+    /** 一键快捷时间：10 分钟后 / 30 分钟后 / 1 小时后 / 今晚(明晚) 20:00 / 明早 09:00 */
+    private fun setupQuickTimes() {
+        val now = Calendar.getInstance()
+        val eveningToday = now.get(Calendar.HOUR_OF_DAY) < 20
+        binding.quickEvening.setText(if (eveningToday) R.string.quick_tonight else R.string.quick_tomorrow_evening)
+
+        binding.quick10m.setOnClickListener { setManualTime(minutesLater(10)) }
+        binding.quick30m.setOnClickListener { setManualTime(minutesLater(30)) }
+        binding.quick1h.setOnClickListener { setManualTime(minutesLater(60)) }
+        binding.quickEvening.setOnClickListener { setManualTime(atHour(if (eveningToday) 0 else 1, 20)) }
+        binding.quickMorning.setOnClickListener { setManualTime(atHour(1, 9)) }
+    }
+
+    /** n 分钟后（取整到分钟） */
+    private fun minutesLater(n: Int): Long {
+        val minute = 60_000L
+        return (System.currentTimeMillis() / minute + n) * minute
+    }
+
+    private fun atHour(dayOffset: Int, hour: Int): Long = Calendar.getInstance().apply {
+        add(Calendar.DAY_OF_YEAR, dayOffset)
+        set(Calendar.HOUR_OF_DAY, hour)
+        set(Calendar.MINUTE, 0)
+        set(Calendar.SECOND, 0)
+        set(Calendar.MILLISECOND, 0)
+    }.timeInMillis
+
+    /** 用户手动定了时间：不再跟随识别出的事件时间和提前量 */
+    private fun setManualTime(t: Long) {
+        hideLead()
+        setReminderTime(t)
     }
 
     private fun updateDateTimeLabels() {
-        binding.dateButton.text = SimpleDateFormat("yyyy-MM-dd EEE", Locale.getDefault()).format(cal.time)
-        binding.timeButton.text = SimpleDateFormat("HH:mm", Locale.getDefault()).format(cal.time)
+        val t = cal.timeInMillis
+        val now = System.currentTimeMillis()
+        val weekday = SimpleDateFormat("EEE", Locale.CHINA).format(cal.time)
+        binding.whenButton.text = "${DateUtil.friendly(t, now)} · $weekday"
+        binding.whenRelative.text = DateTimePickerSheet.relativeText(this, t - now)
     }
 
     private fun selectedRepeat(): RepeatType =

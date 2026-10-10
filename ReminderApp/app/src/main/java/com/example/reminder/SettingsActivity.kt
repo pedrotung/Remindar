@@ -1,15 +1,14 @@
 package com.example.reminder
 
-import android.app.TimePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.text.format.DateFormat
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.reminder.databinding.ActivitySettingsBinding
+import java.util.Calendar
 
 /** 设置：到点提醒的全屏显示权限、逾期待办每日提醒的开关与时间 */
 class SettingsActivity : AppCompatActivity() {
@@ -68,21 +67,21 @@ class SettingsActivity : AppCompatActivity() {
         binding.overlayStatus.setTextColor(ContextCompat.getColor(this, if (overlay) R.color.success else R.color.accent))
     }
 
+    /** 滚轮只选时分 */
     private fun pickTime() {
-        TimePickerDialog(
-            this,
-            { _, hour, minute ->
-                AppSettings.setOverdueTime(this, hour, minute)
-                AlarmScheduler.scheduleOverdueCheck(this)
-                Toast.makeText(
-                    this, getString(R.string.settings_overdue_saved, AppSettings.overdueTimeText(this)),
-                    Toast.LENGTH_SHORT,
-                ).show()
-                refresh()
-            },
-            AppSettings.overdueHour(this),
-            AppSettings.overdueMinute(this),
-            DateFormat.is24HourFormat(this), // 跟随系统的 12 / 24 小时制
-        ).show()
+        val initial = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, AppSettings.overdueHour(this@SettingsActivity))
+            set(Calendar.MINUTE, AppSettings.overdueMinute(this@SettingsActivity))
+        }.timeInMillis
+        DateTimePickerSheet.show(this, getString(R.string.settings_overdue_time), initial, withDate = false) { t ->
+            val c = Calendar.getInstance().apply { timeInMillis = t }
+            AppSettings.setOverdueTime(this, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE))
+            AlarmScheduler.scheduleOverdueCheck(this)
+            Toast.makeText(
+                this, getString(R.string.settings_overdue_saved, AppSettings.overdueTimeText(this)),
+                Toast.LENGTH_SHORT,
+            ).show()
+            refresh()
+        }
     }
 }

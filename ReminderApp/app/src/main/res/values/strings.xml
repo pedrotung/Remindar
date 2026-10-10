@@ -74,6 +74,17 @@
     <string name="repeat_daily">每天</string>
     <string name="repeat_weekly">每周</string>
     <string name="repeat_monthly">每月</string>
+    <string name="quick_10m">10 分钟后</string>
+    <string name="quick_30m">30 分钟后</string>
+    <string name="quick_1h">1 小时后</string>
+    <string name="quick_tonight">今晚 20:00</string>
+    <string name="quick_tomorrow_evening">明晚 20:00</string>
+    <string name="quick_tomorrow_morning">明早 09:00</string>
+    <string name="picker_title">选择提醒时间</string>
+    <string name="picker_relative">%1$s后提醒</string>
+    <string name="picker_passed">这个时间已经过去了</string>
+    <string name="picker_every_day">每天 %1$s</string>
+    <string name="confirm">确定</string>
     <string name="lead_0">准时</string>
     <string name="lead_30m">提前30分钟</string>
     <string name="lead_1h">提前1小时</string>

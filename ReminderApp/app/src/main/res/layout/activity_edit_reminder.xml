@@ -247,31 +247,79 @@
                 </HorizontalScrollView>
             </LinearLayout>
 
-            <LinearLayout
+            <!-- 一键快捷时间 -->
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:orientation="horizontal">
+                android:scrollbars="none">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/dateButton"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="0dp"
-                    android:layout_height="52dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="3"
-                    android:textColor="@color/text_primary"
-                    app:cornerRadius="12dp" />
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:chipSpacingHorizontal="8dp"
+                    app:singleLine="true">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/timeButton"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="0dp"
-                    android:layout_height="52dp"
-                    android:layout_weight="2"
-                    android:textColor="@color/text_primary"
-                    app:cornerRadius="12dp" />
-            </LinearLayout>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/quick10m"
+                        style="@style/Widget.Reminder.PillChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="false"
+                        android:text="@string/quick_10m" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/quick30m"
+                        style="@style/Widget.Reminder.PillChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="false"
+                        android:text="@string/quick_30m" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/quick1h"
+                        style="@style/Widget.Reminder.PillChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="false"
+                        android:text="@string/quick_1h" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/quickEvening"
+                        style="@style/Widget.Reminder.PillChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="false" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/quickMorning"
+                        style="@style/Widget.Reminder.PillChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="false"
+                        android:text="@string/quick_tomorrow_morning" />
+                </com.google.android.material.chip.ChipGroup>
+            </HorizontalScrollView>
+
+            <!-- 当前提醒时间，点击弹出滚轮选择 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/whenButton"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/text_primary"
+                android:textSize="17sp"
+                app:cornerRadius="12dp" />
+
+            <TextView
+                android:id="@+id/whenRelative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
 
             <TextView
                 android:layout_width="wrap_content"
