@@ -82,6 +82,69 @@
                         android:layout_height="wrap_content"
                         android:text="@string/fp_reset_pin" />
                 </LinearLayout>
+
+                <!-- 家人扫码：二维码包含地址 + PIN -->
+                <LinearLayout
+                    android:id="@+id/qrSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@color/outline" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fp_qr_title"
+                        android:textAppearance="@style/TextAppearance.Reminder.StatLabel" />
+
+                    <!-- 二维码始终白底黑码，深色模式下也能被扫描 -->
+                    <ImageView
+                        android:id="@+id/qrImage"
+                        android:layout_width="210dp"
+                        android:layout_height="210dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#FFFFFF"
+                        android:contentDescription="@string/fp_qr_title"
+                        android:padding="8dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="@string/fp_qr_hint"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/copyLink"
+                            style="@style/Widget.Material3.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fp_copy_link" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/shareLink"
+                            style="@style/Widget.Material3.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fp_share_link" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

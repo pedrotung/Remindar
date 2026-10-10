@@ -156,10 +156,16 @@
     <!-- 查找手机 -->
     <string name="fp_title">查找手机</string>
     <string name="fp_enable">开启查找手机服务</string>
-    <string name="fp_label_address">在电脑浏览器中打开</string>
+    <string name="fp_label_address">在电脑或家人手机的浏览器中打开</string>
     <string name="fp_label_pin">PIN 码</string>
     <string name="fp_reset_pin">更换</string>
-    <string name="fp_reset_pin_confirm">更换后，电脑上需要输入新的 PIN 码。确定更换吗？</string>
+    <string name="fp_reset_pin_confirm">更换后，家人需要重新扫码，电脑上也要输入新的 PIN 码。确定更换吗？</string>
+    <string name="fp_qr_title">家人扫码找手机</string>
+    <string name="fp_qr_hint">家人连上家里的 Wi‑Fi，用手机相机扫这个码，就能打开找手机页面（PIN 已自动填好）。打开后在浏览器菜单里选“添加到主屏幕”，以后点桌面图标就能让这部手机响铃。</string>
+    <string name="fp_copy_link">复制链接</string>
+    <string name="fp_share_link">发给家人</string>
+    <string name="fp_link_copied">链接已复制。链接里含 PIN 码，请只发给家人</string>
+    <string name="fp_share_text">找不到我的手机时，连上家里的 Wi‑Fi 打开这个链接，点“让手机响铃”：%1$s</string>
     <string name="fp_test_ring">测试响铃</string>
     <string name="fp_stop_ring">停止响铃</string>
     <string name="fp_enable_first">请先开启查找手机服务</string>
@@ -173,7 +179,7 @@
     <string name="fp_grant">去开启</string>
     <string name="fp_granted">已开启</string>
     <string name="fp_not_granted">未开启</string>
-    <string name="fp_help">使用方法：\n1. 手机和电脑连接同一个 Wi‑Fi（不需要能上网）；没有 Wi‑Fi 时，也可以让电脑连接手机热点。\n2. 在电脑上打开工程里的 laptop/查找手机.html，输入上面的 PIN 码，点“让手机响铃”。网页会自动扫描局域网找到手机并记住地址，所以找不到手机时不需要知道它的地址。\n3. 建议在路由器后台给本机分配固定 IP（DHCP 静态分配），地址永远不变，查找最快。\n\n小米、华为、OPPO、vivo 等手机还需在系统设置中允许本应用“自启动”和“后台运行”。</string>
+    <string name="fp_help">使用方法：\n1. 找手机的设备（电脑或家人手机）和本机连接同一个 Wi‑Fi（路由器不需要能上网）。\n2. 家人手机：扫上面的二维码，打开后“添加到主屏幕”，以后点图标即可。电脑：用手机扫码后把链接发到电脑并收藏；或使用工程里的 laptop/查找手机.html，它能自动扫描局域网找到本机。\n3. 强烈建议在路由器后台给本机绑定固定 IP（DHCP 静态分配），否则 IP 变了需要重新扫码。\n\n小米、华为、OPPO、vivo 等手机还需在系统设置中允许本应用“自启动”和“后台运行”。</string>
 
     <string name="fp_channel_service">查找手机服务</string>
     <string name="fp_channel_ringing">查找手机响铃</string>

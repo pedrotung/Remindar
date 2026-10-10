@@ -90,7 +90,13 @@ class FindPhoneService : Service(), FindPhoneServer.Callback {
         player = AlarmPlayer(this)
 
         val page = assets.open("findphone.html").bufferedReader().use { it.readText() }
-        server = FindPhoneServer(FindPhoneConfig.PORT, { FindPhoneConfig.pin(this) }, this, page).also {
+        // “添加到主屏幕”所需文件，家人手机桌面上会出现“找手机”图标
+        val files = mapOf(
+            "/manifest.webmanifest" to FindPhoneServer.StaticFile("application/manifest+json", readAsset("web/manifest.webmanifest")),
+            "/icon-192.png" to FindPhoneServer.StaticFile("image/png", readAsset("web/icon-192.png")),
+            "/icon-512.png" to FindPhoneServer.StaticFile("image/png", readAsset("web/icon-512.png")),
+        )
+        server = FindPhoneServer(FindPhoneConfig.PORT, { FindPhoneConfig.pin(this) }, this, page, files).also {
             try {
                 it.start()
             } catch (e: IOException) {
@@ -103,6 +109,8 @@ class FindPhoneService : Service(), FindPhoneServer.Callback {
         getSystemService(ConnectivityManager::class.java).registerDefaultNetworkCallback(netCallback)
         refreshServiceNotification()
     }
+
+    private fun readAsset(name: String): ByteArray = assets.open(name).use { it.readBytes() }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         when (intent?.action) {

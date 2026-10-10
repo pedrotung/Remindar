@@ -15,6 +15,7 @@ import kotlin.concurrent.thread
  * 运行在手机上的极简 HTTP 服务器（无第三方依赖），只在局域网内使用。
  *
  *   GET  /            控制网页
+ *   GET  /manifest.webmanifest、/icon-192.png、/icon-512.png  “添加到主屏幕”所需文件
  *   GET  /api/ping    识别本应用（无需 PIN，供电脑端自动搜索）
  *   GET  /api/status  查询是否正在响铃
  *   POST /api/ring    开始响铃
@@ -28,7 +29,11 @@ class FindPhoneServer(
     private val pin: () -> String,
     private val callback: Callback,
     private val page: String,
+    /** 其它静态文件（“添加到主屏幕”用的 manifest、图标）：路径 → 文件 */
+    private val files: Map<String, StaticFile> = emptyMap(),
 ) {
+    class StaticFile(val type: String, val bytes: ByteArray)
+
     interface Callback {
         fun onRing()
         fun onSilence()
@@ -82,6 +87,8 @@ class FindPhoneServer(
                 method == "OPTIONS" -> respond(out, 204, TEXT, "") // CORS 预检
                 method == "GET" && (path == "/" || path == "/index.html") ->
                     respond(out, 200, "text/html; charset=utf-8", page)
+                method == "GET" && files.containsKey(path) ->
+                    files.getValue(path).let { respondBytes(out, 200, it.type, it.bytes) }
                 path.startsWith("/api/") -> api(out, method, path, headers["x-pin"])
                 else -> respond(out, 404, TEXT, "not found")
             }
@@ -129,8 +136,10 @@ class FindPhoneServer(
         return Auth.WRONG
     }
 
-    private fun respond(out: OutputStream, code: Int, type: String, body: String) {
-        val bytes = body.toByteArray(Charsets.UTF_8)
+    private fun respond(out: OutputStream, code: Int, type: String, body: String) =
+        respondBytes(out, code, type, body.toByteArray(Charsets.UTF_8))
+
+    private fun respondBytes(out: OutputStream, code: Int, type: String, bytes: ByteArray) {
         val head = buildString {
             append("HTTP/1.1 $code ${REASONS[code] ?: "OK"}\r\n")
             append("Content-Type: $type\r\n")

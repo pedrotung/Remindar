@@ -40,4 +40,6 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     // lifecycleScope + 协程：用于在后台调用大模型接口
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
+    // 生成“家人扫码找手机”的二维码（仅编码，不含扫描界面）
+    implementation("com.google.zxing:core:3.5.3")
 }

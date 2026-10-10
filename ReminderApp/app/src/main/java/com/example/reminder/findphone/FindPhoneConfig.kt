@@ -54,4 +54,10 @@ object FindPhoneConfig {
     }
 
     fun urls(): List<String> = localAddresses().map { "http://$it:$PORT" }
+
+    /**
+     * 给家人用的链接：地址 + PIN（放在 # 后面，不会作为请求发送；网页读取后自动填入并保存）。
+     * 未连接局域网时返回 null。
+     */
+    fun familyUrl(context: Context): String? = urls().firstOrNull()?.let { "$it/#pin=${pin(context)}" }
 }
