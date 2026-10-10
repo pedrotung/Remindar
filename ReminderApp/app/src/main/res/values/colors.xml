@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- 浅色：浅灰背景 + 白色卡片 + 细边框 + 蓝色强调色 -->
-    <color name="bg">#F5F6F8</color>
+    <!-- 浅色：暖灰背景 + 白色卡片 + 细边框 + 活力橙强调色（与应用图标一致） -->
+    <color name="bg">#F7F5F3</color>
     <color name="surface">#FFFFFF</color>
-    <color name="outline">#E7E9ED</color>
-    <color name="text_primary">#15171A</color>
-    <color name="text_secondary">#8B9099</color>
-    <color name="accent">#2F6BFF</color>
-    <color name="accent_container">#EAF0FF</color>
-    <color name="chip_bg">#EEF0F3</color>
-    <color name="chip_selected">#15171A</color>
-    <color name="chip_text">#15171A</color>
+    <color name="outline">#EDE7E3</color>
+    <color name="text_primary">#1A1614</color>
+    <color name="text_secondary">#93897F</color>
+    <color name="accent">#F4511E</color>
+    <!-- 强调色上的文字 / 图标颜色 -->
+    <color name="on_accent">#FFFFFF</color>
+    <color name="accent_container">#FFE8DE</color>
+    <color name="chip_bg">#F1ECE8</color>
+    <color name="chip_selected">#1A1614</color>
+    <color name="chip_text">#1A1614</color>
     <color name="chip_text_selected">#FFFFFF</color>
     <color name="success">#22A06B</color>
     <color name="error">#D93025</color>
+    <!-- 到点提醒卡片的渐变（与图标相同，深浅模式通用） -->
+    <color name="alert_start">#FF8A50</color>
+    <color name="alert_end">#F4511E</color>
 </resources>

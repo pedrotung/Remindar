@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 到点提醒全屏卡片背景：与应用图标相同的橙色渐变 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient
+        android:angle="300"
+        android:endColor="@color/alert_end"
+        android:startColor="@color/alert_start"
+        android:type="linear" />
+</shape>

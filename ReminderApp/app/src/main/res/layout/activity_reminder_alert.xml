@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/accent"
+    android:background="@drawable/bg_alert"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="32dp">
@@ -51,7 +51,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="48dp"
         android:backgroundTint="#FFFFFF"
-        android:textColor="@color/accent"
+        android:textColor="@color/alert_end"
         android:textSize="18sp"
         android:textStyle="bold"
         app:cornerRadius="30dp" />

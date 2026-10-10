@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>橙色主题预览</title>
+<style>
+  body { margin: 0; width: 1080px; background: #ECEEF1; font-family: "Microsoft YaHei", system-ui, sans-serif; }
+  h1 { font-size: 44px; margin: 44px 44px 6px; color: #15171A; }
+  .sub { font-size: 24px; color: #8B9099; margin: 0 44px 26px; }
+  .row { display: flex; justify-content: space-around; margin-bottom: 18px; }
+  .col { text-align: center; }
+  .cap { font-size: 30px; font-weight: bold; margin: 0 0 14px; color: #15171A; }
+  .cap small { font-weight: normal; color: #8B9099; font-size: 22px; }
+
+  /* 手机外框 */
+  .phone { width: 470px; height: 960px; border-radius: 52px; background: #111; padding: 12px; box-sizing: border-box; box-shadow: 0 10px 30px rgba(0,0,0,.18); }
+  .screen { width: 100%; height: 100%; border-radius: 42px; overflow: hidden; position: relative; background: var(--bg); color: var(--text); text-align: left; }
+
+  /* 主题变量 */
+  .blue   { --accent: #2F6BFF; --accent-text: #2F6BFF; --bg: #F5F6F8; --surface: #fff; --outline: #E7E9ED; --text: #15171A; --text2: #8B9099; --chip: #EEF0F3; --chip-on: #15171A; --chip-on-text: #fff; --alert-bg: #2F6BFF; }
+  .orange { --accent: #F4511E; --accent-text: #E64A19; --bg: #F7F5F3; --surface: #fff; --outline: #EDE7E3; --text: #1A1614; --text2: #93897F; --chip: #F1ECE8; --chip-on: #1A1614; --chip-on-text: #fff; --alert-bg: linear-gradient(160deg, #FF8A50, #F4511E); }
+  .orange-dark { --accent: #FF8A50; --accent-text: #FF9E6E; --bg: #121010; --surface: #1C1917; --outline: #2E2925; --text: #F3EFEC; --text2: #A39A92; --chip: #2A2522; --chip-on: #F3EFEC; --chip-on-text: #1A1614; --alert-bg: linear-gradient(160deg, #FF8A50, #F4511E); }
+
+  .status { height: 44px; font-size: 18px; padding: 14px 30px 0; display: flex; justify-content: space-between; font-weight: bold; }
+  .top { display: flex; align-items: center; justify-content: space-between; padding: 6px 22px 10px; }
+  .top .menu { width: 26px; height: 18px; border-top: 3px solid var(--text); border-bottom: 3px solid var(--text); position: relative; }
+  .top .menu::after { content: ""; position: absolute; left: 0; right: 0; top: 6px; border-top: 3px solid var(--text); }
+  .top .title { font-size: 26px; font-weight: bold; }
+  .top .phonebtn { width: 40px; height: 40px; border-radius: 50%; background: var(--chip); position: relative; }
+  .top .phonebtn::after { content: ""; position: absolute; top: 3px; right: 3px; width: 9px; height: 9px; border-radius: 50%; background: #22A06B; border: 2px solid var(--bg); }
+  .chips { display: flex; gap: 8px; padding: 4px 18px 0; white-space: nowrap; overflow: hidden; }
+  .chip { font-size: 17px; padding: 8px 16px; border-radius: 99px; background: var(--chip); }
+  .chip.on { background: var(--chip-on); color: var(--chip-on-text); }
+  .stats { display: flex; gap: 10px; padding: 14px 18px 0; }
+  .stat { flex: none; width: 200px; background: var(--surface); border: 1.5px solid var(--outline); border-radius: 18px; padding: 14px 16px; }
+  .stat b { display: block; font-size: 16px; }
+  .stat .v { font-size: 34px; font-weight: bold; margin: 6px 0 2px; }
+  .stat .v small { font-size: 17px; }
+  .stat .s { font-size: 14px; color: var(--text2); }
+  .stat .s.red { color: #D93025; }
+  .orange-dark .stat .s.red { color: #FF6B5E; }
+  .list { margin: 14px 18px 0; background: var(--surface); border: 1.5px solid var(--outline); border-radius: 18px; padding: 8px 0; }
+  .list h3 { font-size: 18px; margin: 8px 16px 4px; }
+  .item { display: flex; align-items: center; gap: 12px; padding: 10px 16px; }
+  .av { width: 40px; height: 40px; border-radius: 50%; color: #fff; font-weight: bold; display: flex; align-items: center; justify-content: center; font-size: 17px; flex: none; }
+  .ring { width: 26px; height: 26px; margin: 0 7px; border-radius: 50%; border: 3px solid var(--text2); box-sizing: border-box; flex: none; }
+  .txt { flex: 1; }
+  .txt b { font-size: 17px; display: block; }
+  .txt span { font-size: 14px; color: var(--text2); }
+  .txt span.red { color: #D93025; }
+  .orange-dark .txt span.red { color: #FF6B5E; }
+  .sw { width: 42px; height: 24px; border-radius: 99px; background: var(--accent); position: relative; flex: none; }
+  .sw::after { content: ""; position: absolute; right: 3px; top: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; }
+  .fab { position: absolute; right: 22px; bottom: 26px; width: 64px; height: 64px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 40px; line-height: 60px; text-align: center; box-shadow: 0 6px 16px rgba(0,0,0,.2); }
+
+  /* 全屏提醒卡片 */
+  .alert { position: absolute; inset: 0; background: var(--alert-bg); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 34px; }
+  .alert .ic { font-size: 54px; }
+  .alert .t1 { font-size: 20px; opacity: .85; margin-top: 12px; }
+  .alert .t2 { font-size: 36px; font-weight: bold; margin-top: 6px; }
+  .alert .t3 { font-size: 17px; opacity: .9; margin-top: 12px; text-align: center; line-height: 1.5; }
+  .alert .b1 { width: 100%; margin-top: 46px; background: #fff; color: var(--accent-text); font-size: 21px; font-weight: bold; text-align: center; padding: 18px 0; border-radius: 99px; }
+  .alert .b2 { width: 100%; margin-top: 12px; border: 2px solid #fff; font-size: 21px; text-align: center; padding: 16px 0; border-radius: 99px; box-sizing: border-box; }
+
+  .note { font-size: 24px; color: #4E545C; margin: 10px 44px 40px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<h1>App 主题色预览：蓝色 vs 橙色</h1>
+<p class="sub">左：现在的蓝色　右：换成与图标一致的橙色</p>
+
+<template id="main">
+  <div class="status"><span>13:20</span><span>54%</span></div>
+  <div class="top"><div class="menu"></div><div class="title">个人提醒</div><div class="phonebtn"></div></div>
+  <div class="chips"><span class="chip on">全部</span><span class="chip">今天</span><span class="chip">待办</span><span class="chip">重复</span><span class="chip">已完成</span></div>
+  <div class="stats">
+    <div class="stat"><b>今日待处理</b><div class="v">3 <small>项</small></div><div class="s">下一个 15:00 给王总报价</div></div>
+    <div class="stat"><b>待办事项</b><div class="v">2 <small>项</small></div><div class="s red">1 项已逾期</div></div>
+  </div>
+  <div class="list">
+    <h3>近期提醒</h3>
+    <div class="item"><div class="ring"></div><div class="txt"><b>回复李经理邮件</b><span class="red">已逾期 · 昨天 17:00</span></div></div>
+    <div class="item"><div class="ring"></div><div class="txt"><b>给王总报价</b><span>15:00 · A 型号 500 台</span></div></div>
+    <div class="item"><div class="av" style="background:#22A06B">牙</div><div class="txt"><b>18:30  牙科复诊</b><span>人民路 88 号 3 楼</span></div><div class="sw"></div></div>
+    <div class="item"><div class="av" style="background:#7B61FF">交</div><div class="txt"><b>明天 09:00  交房租</b><span>每月</span></div><div class="sw"></div></div>
+  </div>
+  <div class="fab">+</div>
+</template>
+
+<template id="alert">
+  <div class="alert">
+    <div class="ic">⏰</div>
+    <div class="t1">10月12日 周一 15:00</div>
+    <div class="t2">给王总报价</div>
+    <div class="t3">A 型号 500 台<br>报价单发邮件</div>
+    <div class="b1">完成</div>
+    <div class="b2">10 分钟后</div>
+  </div>
+</template>
+
+<div class="row">
+  <div class="col"><p class="cap">现在 · 蓝色</p><div class="phone"><div class="screen blue" data-t="main"></div></div></div>
+  <div class="col"><p class="cap">建议 · 橙色</p><div class="phone"><div class="screen orange" data-t="main"></div></div></div>
+</div>
+<div class="row">
+  <div class="col"><p class="cap">到点提醒卡片 · 蓝色</p><div class="phone"><div class="screen blue" data-t="alert"></div></div></div>
+  <div class="col"><p class="cap">到点提醒卡片 · 橙色</p><div class="phone"><div class="screen orange" data-t="alert"></div></div></div>
+</div>
+<div class="row">
+  <div class="col"><p class="cap">橙色 · 深色模式 <small>（手机开深色模式时）</small></p><div class="phone"><div class="screen orange-dark" data-t="main"></div></div></div>
+  <div class="col"><p class="cap">图标</p>
+    <svg width="300" height="300" viewBox="0 0 108 108" style="margin-top:80px">
+      <defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9A62"/><stop offset="1" stop-color="#F4511E"/></linearGradient></defs>
+      <rect width="108" height="108" rx="24" fill="url(#g5)"/>
+      <path fill="#fff" d="M54 27c-11 0-19 9-19 21v11l-6 8c-1 2 0 4 2 4h46c2 0 3-2 2-4l-6-8V48c0-12-8-21-19-21z"/>
+      <circle cx="54" cy="77" r="6" fill="#fff"/>
+      <path fill="#FFF3B0" d="M76 24l2.6 7.4L86 34l-7.4 2.6L76 44l-2.6-7.4L66 34l7.4-2.6z"/>
+    </svg>
+  </div>
+</div>
+<p class="note">说明：橙色方案中，背景从冷灰微调为暖灰，与橙色更协调；“已逾期”仍用红色，和橙色能区分开。到点提醒卡片使用与图标相同的橙色渐变。</p>
+
+<script>
+  document.querySelectorAll('[data-t]').forEach(el => {
+    el.appendChild(document.getElementById(el.dataset.t).content.cloneNode(true));
+  });
+</script>
+</body>
+</html>

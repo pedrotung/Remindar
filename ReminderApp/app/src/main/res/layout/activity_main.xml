@@ -308,5 +308,5 @@
         app:backgroundTint="@color/accent"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Reminder.Pill"
         app:srcCompat="@drawable/ic_add"
-        app:tint="#FFFFFF" />
+        app:tint="@color/on_accent" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

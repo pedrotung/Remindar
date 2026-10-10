@@ -3,7 +3,7 @@
     <!-- 无系统标题栏：主页自绘顶部栏，其它页面使用 MaterialToolbar -->
     <style name="Theme.Reminder" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/accent</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorOnPrimary">@color/on_accent</item>
         <item name="colorPrimaryContainer">@color/accent_container</item>
         <item name="colorOnPrimaryContainer">@color/accent</item>
         <item name="colorSecondaryContainer">@color/accent_container</item>
