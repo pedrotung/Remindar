@@ -88,6 +88,11 @@ class MainActivity : AppCompatActivity() {
         refresh()
         // 手机正在被“查找”时打开 App，直接显示“找到了”界面
         if (FindPhoneService.isRinging) startActivity(Intent(this, RingingActivity::class.java))
+        // 提醒正在响铃时打开 App，直接显示带“知道了”的全屏卡片
+        val ringing = ReminderRingService.ringingId
+        if (ringing != -1L) {
+            startActivity(Intent(this, ReminderAlertActivity::class.java).putExtra(ReminderAlertActivity.EXTRA_ID, ringing))
+        }
     }
 
     private fun refresh() {
@@ -232,6 +237,7 @@ class MainActivity : AppCompatActivity() {
             .setMessage(getString(R.string.delete_confirm, r.title))
             .setPositiveButton(R.string.delete) { _, _ ->
                 AlarmScheduler.cancel(this, r.id)
+                ReminderRingService.stop(this, r.id)
                 db.delete(r.id)
                 refresh()
             }

@@ -43,11 +43,16 @@
     <string name="todo_next">本次已完成，下次：%1$s</string>
 
     <!-- 逾期待办每日提醒（静音） -->
-    <string name="channel_overdue_name">逾期待办</string>
-    <string name="channel_overdue_desc">每天在设定的时间提醒尚未完成的逾期待办，不响铃、不振动</string>
+    <string name="channel_overdue_name">静默提醒</string>
+    <string name="channel_overdue_desc">逾期待办的每日提醒，以及响铃超时未处理的提醒。不响铃、不振动</string>
+    <string name="channel_alarm_name">到点响铃</string>
+    <string name="channel_alarm_desc">提醒到点时像闹钟一样响铃（使用闹钟音量，最多 1 分钟），锁屏时全屏显示</string>
 
     <!-- 设置 -->
     <string name="settings_title">设置</string>
+    <string name="settings_ring_section">到点提醒</string>
+    <string name="settings_overlay_title">锁屏时弹出全屏提醒</string>
+    <string name="settings_overlay_desc">到点时直接弹出带“知道了”按钮的全屏卡片。需要授予“悬浮窗 / 显示在其他应用上层”权限；未授予时只响铃并亮屏，需在通知栏中操作</string>
     <string name="settings_overdue_section">逾期待办</string>
     <string name="settings_overdue_switch">每天提醒逾期待办</string>
     <string name="settings_overdue_desc">对今天之前到期、仍未完成的待办，每天在下面的时间静默提醒一次（不响铃、不振动，只在通知栏和锁屏显示）</string>

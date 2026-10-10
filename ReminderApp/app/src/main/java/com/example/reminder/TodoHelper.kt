@@ -20,6 +20,7 @@ object TodoHelper {
         }
         db.save(updated)
         if (updated.enabled) AlarmScheduler.schedule(context, updated) else AlarmScheduler.cancel(context, r.id)
+        ReminderRingService.stop(context, r.id) // 在 App 里勾选完成时，若正在响铃也一并停止
         NotificationManagerCompat.from(context).cancel(r.id.toInt())
         return updated
     }

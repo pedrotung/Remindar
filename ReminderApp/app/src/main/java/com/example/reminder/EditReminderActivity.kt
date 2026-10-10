@@ -391,6 +391,7 @@ class EditReminderActivity : AppCompatActivity() {
     private fun delete() {
         val r = editing ?: return
         AlarmScheduler.cancel(this, r.id)
+        ReminderRingService.stop(this, r.id)
         db.delete(r.id)
         finish()
     }

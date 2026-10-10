@@ -33,7 +33,7 @@ class ReminderReceiver : BroadcastReceiver() {
             ACTION_FIRE -> {
                 val r = db.getById(id) ?: return
                 if (!r.enabled || r.isDone) return
-                NotificationHelper.show(context, r)
+                ReminderRingService.start(context, r) // 像闹钟一样响铃，锁屏时全屏弹出
                 // 重复：计算下一次并重新注册；一次性：闹钟结束（待办仍未完成，显示为逾期）
                 val next = if (r.repeat == RepeatType.NONE) r.copy(enabled = false) else r.rolledForward()
                 db.save(next)
@@ -42,13 +42,15 @@ class ReminderReceiver : BroadcastReceiver() {
             ACTION_SNOOZE_FIRE -> {
                 val r = db.getById(id) ?: return
                 if (r.isDone) return // 稍后提醒期间已在 App 中完成
-                NotificationHelper.show(context, r)
+                ReminderRingService.start(context, r)
             }
             ACTION_SNOOZE -> {
+                ReminderRingService.stop(context, id)
                 NotificationManagerCompat.from(context).cancel(id.toInt())
                 AlarmScheduler.scheduleSnooze(context, id, SNOOZE_MINUTES * 60_000)
             }
             ACTION_DONE -> {
+                ReminderRingService.stop(context, id)
                 // 待办：“完成”即标记完成；普通提醒：“知道了”只关闭通知
                 val r = db.getById(id)
                 if (r != null && r.isTodo && !r.isDone && r.repeat == RepeatType.NONE) {

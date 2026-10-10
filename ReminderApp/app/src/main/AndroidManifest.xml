@@ -23,6 +23,9 @@
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
+    <!-- 到点提醒：后台直接弹出全屏提醒卡片（部分系统会把全屏通知降级，需此权限兜底），用户在设置中手动授予 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <application
         android:allowBackup="true"
         android:icon="@android:drawable/ic_popup_reminder"
@@ -83,6 +86,25 @@
             <property
                 android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
                 android:value="Local-network find-my-phone: rings the device on request from the owner's computer" />
+        </service>
+
+        <!-- 到点提醒的全屏卡片：锁屏时点亮屏幕显示，独立任务栈，不出现在最近任务中 -->
+        <activity
+            android:name=".ReminderAlertActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:showWhenLocked="true"
+            android:taskAffinity="com.example.reminder.alert"
+            android:turnScreenOn="true" />
+
+        <service
+            android:name=".ReminderRingService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Plays the user's alarm ringtone for up to one minute when a reminder the user set is due" />
         </service>
 
         <receiver
