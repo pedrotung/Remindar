@@ -6,7 +6,7 @@
 
     <string name="new_reminder">新建提醒</string>
     <string name="edit_reminder">编辑提醒</string>
-    <string name="empty_hint">还没有提醒，点击右下角 + 添加</string>
+    <string name="empty_hint">没有进行中的提醒\n点击右下角 + 添加，已结束的可在“已完成”中查看</string>
 
     <!-- 主页 -->
     <string name="menu">菜单</string>
