@@ -20,6 +20,9 @@ local.properties
 *.jks
 keystore.properties
 
+# 本机专用说明（含本机路径、设备信息）
+CLAUDE.local.md
+
 # 系统文件
 .DS_Store
 Thumbs.db
