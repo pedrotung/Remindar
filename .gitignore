@@ -13,11 +13,12 @@ local.properties
 .idea/
 *.iml
 
-# 安装包与签名密钥（密钥绝不能提交）
+# 安装包与签名密钥（密钥和密码绝不能提交）
 *.apk
 *.aab
 *.keystore
 *.jks
+keystore.properties
 
 # 系统文件
 .DS_Store

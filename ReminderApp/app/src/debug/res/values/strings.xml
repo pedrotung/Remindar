@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 调试版的桌面名称，与正式版“醒达”区分 -->
+    <string name="app_name">醒达 Dev</string>
+</resources>
