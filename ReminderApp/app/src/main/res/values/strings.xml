@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">个人提醒</string>
+    <!-- 产品名：中文“醒达”，英文 Remindar（Remind + Radar），见 values-en -->
+    <string name="app_name">醒达</string>
     <string name="channel_name">提醒通知</string>
     <string name="channel_desc">到点时弹出的提醒</string>
 
